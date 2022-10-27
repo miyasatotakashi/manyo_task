@@ -1,5 +1,5 @@
 erDiagram
-users ||--{ tasks: ""
+users ||--|{ tasks: ""
 tasks ||--|{ labels: ""
 
 users {
