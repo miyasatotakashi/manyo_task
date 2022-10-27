@@ -8,13 +8,13 @@ users
 
 tasks
 ---
-|---|---|
 |テーブル|カラム|
+|---|---|
 |title|string|
 |content|text|
 
 labels
 ---
-|---|---|
 |テーブル|カラム|
+|---|---|
 |label|string|
