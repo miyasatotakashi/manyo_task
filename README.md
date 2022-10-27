@@ -1,24 +1,18 @@
-# README
+erDiagram
+users ||--{ tasks: ""
+tasks ||--|{ labels: ""
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+users {
+  string name
+  string email
+  string password_digest
+}
 
-Things you may want to cover:
+tasks {
+  string title
+  string content
+}
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+labels {
+  string label
+}
