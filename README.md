@@ -1,18 +1,17 @@
-erDiagram
-users ||--|{ tasks: ""
-tasks ||--|{ labels: ""
+users
+---
+|テーブル|カラム|
+|name |string|
+|email|string|
+|password_digest|string|
 
-users {
-  string name
-  string email
-  string password_digest
-}
+tasks
+---
+|テーブル|カラム|
+|title|string|
+|content|text|
 
-tasks {
-  string title
-  string content
-}
-
-labels {
-  string label
-}
+labels
+---
+|テーブル|カラム|
+|label|string|
