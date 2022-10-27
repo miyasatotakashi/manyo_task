@@ -1,0 +1,20 @@
+current directory: /Users/takashimiyasato/workspace/manyo_task/vender/bundle/ruby/3.0.0/gems/byebug-11.1.3/ext/byebug
+/Users/takashimiyasato/.rbenv/versions/3.0.1/bin/ruby -I /Users/takashimiyasato/.rbenv/versions/3.0.1/lib/ruby/3.0.0 -r ./siteconf20221027-64694-pfiwg3.rb extconf.rb
+creating Makefile
+
+current directory: /Users/takashimiyasato/workspace/manyo_task/vender/bundle/ruby/3.0.0/gems/byebug-11.1.3/ext/byebug
+make DESTDIR\= clean
+
+current directory: /Users/takashimiyasato/workspace/manyo_task/vender/bundle/ruby/3.0.0/gems/byebug-11.1.3/ext/byebug
+make DESTDIR\=
+compiling breakpoint.c
+compiling byebug.c
+compiling context.c
+compiling locker.c
+compiling threads.c
+linking shared-object byebug/byebug.bundle
+ld: warning: -undefined dynamic_lookup may not work with chained fixups
+
+current directory: /Users/takashimiyasato/workspace/manyo_task/vender/bundle/ruby/3.0.0/gems/byebug-11.1.3/ext/byebug
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 byebug.bundle ./.gem.20221027-64694-3fb7nc/byebug

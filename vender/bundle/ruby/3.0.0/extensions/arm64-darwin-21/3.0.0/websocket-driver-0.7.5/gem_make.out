@@ -1,0 +1,16 @@
+current directory: /Users/takashimiyasato/workspace/manyo_task/vender/bundle/ruby/3.0.0/gems/websocket-driver-0.7.5/ext/websocket-driver
+/Users/takashimiyasato/.rbenv/versions/3.0.1/bin/ruby -I /Users/takashimiyasato/.rbenv/versions/3.0.1/lib/ruby/3.0.0 -r ./siteconf20221027-64694-fcxeyn.rb extconf.rb
+creating Makefile
+
+current directory: /Users/takashimiyasato/workspace/manyo_task/vender/bundle/ruby/3.0.0/gems/websocket-driver-0.7.5/ext/websocket-driver
+make DESTDIR\= clean
+
+current directory: /Users/takashimiyasato/workspace/manyo_task/vender/bundle/ruby/3.0.0/gems/websocket-driver-0.7.5/ext/websocket-driver
+make DESTDIR\=
+compiling websocket_mask.c
+linking shared-object websocket_mask.bundle
+ld: warning: -undefined dynamic_lookup may not work with chained fixups
+
+current directory: /Users/takashimiyasato/workspace/manyo_task/vender/bundle/ruby/3.0.0/gems/websocket-driver-0.7.5/ext/websocket-driver
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 websocket_mask.bundle ./.gem.20221027-64694-d4zpzl
