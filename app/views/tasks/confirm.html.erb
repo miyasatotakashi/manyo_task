@@ -1,0 +1,13 @@
+<h3>以下の内容で、投稿する。</h3>
+
+<%= form_with(model: @task, url: tasks_path, local: true) do |form| %>
+
+    
+    <p>名前:<%= @task.title %></p>
+    <%= form.hidden_field :title %>
+    <p>本文:<%= @task.content %></p>
+    <%= form.hidden_field :content %>
+    <%= form.submit  "投稿する" %>
+    <%= form.submit '戻る', title: 'back' %>
+    <% end %>
+  
