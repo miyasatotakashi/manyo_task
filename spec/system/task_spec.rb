@@ -43,10 +43,18 @@ RSpec.describe 'タスク管理機能', type: :system do
   context 'タスクが作成日時の降順に並んでる場合' do
     it '新しいタスクが一番上に表示される' do
       visit tasks_path
-      save_and_open_page
       task_list = all('.task_row')
       expect(task_list[0]).to have_content 'test_title2'
       expect(task_list[1]).to have_content 'test_title'
+    end
+  end
+
+  context '終了期限でソートするをクリックした場合' do
+    it 'タスクが終了期限の降順に並んでいる' do
+      visit tasks_path
+      task_list = all('.date_row')
+      expect(task_list[0]).to have_content '2022-11-02'
+      expect(task_list[1]).to have_content '2022-11-01'
     end
   end
 end
