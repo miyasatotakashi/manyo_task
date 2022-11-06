@@ -1,11 +1,33 @@
 class TasksController < ApplicationController
 
   def index
+    @tasks = Task.all.order(created_at: "DESC")
     if params[:sort_exprired]
       @tasks = Task.all.order(deadline_on: "DESC")
-    else
-      @tasks = Task.all.order(created_at: "DESC")
     end
+
+    if params[:task].present?
+      title_input = params[:task][:title]
+      status_input = params[:task][:status]
+
+      if title_input.present? && status_input.present?
+        @tasks = Task.title_search(title_input).status_search(status_input)
+      elsif title_input.present?
+        @tasks = Task.title_search(title_input)
+      elsif status_input.present?
+        @tasks = Task.status_search(status_input)
+      # if params[:task][:title].present? && params[:task][:status].present?
+      #   @tasks = Task.where("title LIKE ?", "%#{params[:task][:title]}%").where(status: status)
+      # elsif params[:task][:title].present?
+      #   @tasks = Task.where("title LIKE ?", "%#{params[:task][:title]}%")
+      # elsif params[:task][:status].present?
+      #   @tasks = Task.where(status: status)
+      end
+    end
+  end
+
+  def search
+    @tasks = Task.search(params[:keyword])
   end
 
   def new
@@ -56,7 +78,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:title, :content)
+    params.require(:task).permit(:title, :content, :status)
   end
 
 end
