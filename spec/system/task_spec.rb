@@ -3,8 +3,8 @@ RSpec.describe 'タスク管理機能', type: :system do
   # let!(:task){ FactoryBot.create(:task, title: 'task')}
   # describe '一覧表示機能' do
   before do
-    FactoryBot.create(:task)
-    FactoryBot.create(:second_task)
+    FactoryBot.create(:task, title: "first_title", content: "first_content", status: '完了')
+    FactoryBot.create(:second_task, title: "second_title")
   end
 
   describe '新規作成機能' do
@@ -14,8 +14,8 @@ RSpec.describe 'タスク管理機能', type: :system do
         fill_in 'task[title]', with: 'テストタイトル'
         fill_in 'task[content]', with: 'テスト本文'
         click_on '登録する'
-        expect(page).to have_content 'test_title'
-        expect(page).to have_content 'test_content'
+        expect(page).to have_content 'first_title'
+        expect(page).to have_content 'first_content'
       end
     end
   end
@@ -44,8 +44,8 @@ RSpec.describe 'タスク管理機能', type: :system do
     it '新しいタスクが一番上に表示される' do
       visit tasks_path
       task_list = all('.task_row')
-      expect(task_list[0]).to have_content 'test_title2'
-      expect(task_list[1]).to have_content 'test_title'
+      expect(task_list[0]).to have_content 'second_title'
+      expect(task_list[1]).to have_content 'first_title'
     end
   end
 
@@ -55,6 +55,35 @@ RSpec.describe 'タスク管理機能', type: :system do
       task_list = all('.date_row')
       expect(task_list[0]).to have_content '2022-11-02'
       expect(task_list[1]).to have_content '2022-11-01'
+    end
+  end
+
+  context 'タイトルであいまい検索をした場合' do
+    it "検索キーワードを含むタスクで絞り込まれる" do
+      visit tasks_path
+      fill_in 'task_title', with: 'first_title'
+      click_on '検索する'
+      expect(page).to have_content 'first_title'
+    end
+  end
+
+  context 'ステータス検索した場合' do
+    it "ステータスに完全一致するタスクが絞り込まれる" do
+      visit tasks_path
+      select '完了', from: 'task_status'
+      click_on '検索する'
+      expect(page).to have_selector 'td', text: '完了'
+    end
+  end
+
+  context 'タイトルのあいまい検索とステータス検索をした場合' do
+    it "検索キーワードをタイトルに含み、かつステータスに完全一致するタスク絞り込まれる" do
+      visit tasks_path
+      fill_in 'task_title', with: 'first_title'
+      select '完了', from: 'task_status'
+      click_on '検索する'
+      expect(page).to have_content 'first_title'
+      expect(page).to have_selector 'td', text: '完了'
     end
   end
 end
