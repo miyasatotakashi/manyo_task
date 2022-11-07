@@ -1,10 +1,12 @@
 class TasksController < ApplicationController
 
   def index
-    @tasks = Task.all.order(created_at: "DESC")
-    @tasks = Task.all.order(deadline_on: "DESC") if params[:sort_exprired]
-    @tasks = Task.all.order(deadline_on: "ASC") if params[:sort_priority]
-
+    @tasks = Task.order(created_at: "DESC")
+  if params[:sort_exprired] 
+    @tasks = Task.all.order(deadline_on: "DESC") 
+  elsif params[:sort_priority]
+    @tasks = Task.all.order(priority: "ASC") 
+  end
     if params[:task].present?
       title_input = params[:task][:title]
       status_input = params[:task][:status]

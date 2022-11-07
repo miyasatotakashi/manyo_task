@@ -18,13 +18,13 @@
   </tr>
 
 <% @tasks.each do |task| %>
-  <tr>
+  <tr class="date_row">
     <td><%= task.title %></td>
     <td><%= task.content %></td>
-    <td><%= task.created_at %></td>
+    <td><%= task.deadline_on %></td>
     <td><%= task.status %></td>
     <td><%= task.priority %></td>
-    <td><%= task.deadline_on %></td>
+    
     
     <td><%=link_to '編集', edit_task_path(task.id), class: "btn btn-success" %></td>
     <td><%=link_to '削除', task_path(task.id), method: :delete, class: "btn btn-danger" %></td>
