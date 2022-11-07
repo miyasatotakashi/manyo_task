@@ -6,6 +6,10 @@ class TasksController < ApplicationController
       @tasks = Task.all.order(deadline_on: "DESC")
     end
 
+    if params[:sort_priority]
+      @tasks = Task.all.order(deadline_on: "ASC")
+    end
+
     if params[:task].present?
       title_input = params[:task][:title]
       status_input = params[:task][:status]
