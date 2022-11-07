@@ -27,9 +27,12 @@
     <td class="date_row"><%= task.deadline_on %></td>
     <td><%= task.status %></td>
     <td><%= task.priority %></td>
+    <td><%= task.deadline_on %></td>
+    <td><%= task.created_at %></td>
     <td><%=link_to '編集', edit_task_path(task.id) %></td>
     <td><%=link_to '削除', task_path(task.id), method: :delete %></td>
   </tr>
 <% end %>
 </table>
+<%= paginate @tasks %>
     <%=link_to '新規投稿', new_task_path %>

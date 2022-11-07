@@ -2,13 +2,8 @@ class TasksController < ApplicationController
 
   def index
     @tasks = Task.all.order(created_at: "DESC")
-    if params[:sort_exprired]
-      @tasks = Task.all.order(deadline_on: "DESC")
-    end
-
-    if params[:sort_priority]
-      @tasks = Task.all.order(deadline_on: "ASC")
-    end
+    @tasks = Task.all.order(deadline_on: "DESC") if params[:sort_exprired]
+    @tasks = Task.all.order(deadline_on: "ASC") if params[:sort_priority]
 
     if params[:task].present?
       title_input = params[:task][:title]
@@ -28,6 +23,7 @@ class TasksController < ApplicationController
       #   @tasks = Task.where(status: status)
       end
     end
+    @tasks = @tasks.page(params[:page]).per(5)
   end
 
   def search
@@ -82,7 +78,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:title, :content, :status)
+    params.require(:task).permit(:title, :content, :status, :priority, :deadline_on)
   end
 
 end

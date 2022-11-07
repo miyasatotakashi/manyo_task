@@ -1,7 +1,5 @@
 require 'rails_helper'
 RSpec.describe 'タスク管理機能', type: :system do
-  # let!(:task){ FactoryBot.create(:task, title: 'task')}
-  # describe '一覧表示機能' do
   before do
     FactoryBot.create(:task, title: "first_title", content: "first_content", status: '完了')
     FactoryBot.create(:second_task, title: "second_title")
