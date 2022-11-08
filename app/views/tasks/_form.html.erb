@@ -17,5 +17,18 @@
   <%= form.label :詳細 %>
   <%= form.text_field :content %>
 
+  <%= form.label :終了期限 %>
+  <%= form.date_field :deadline_on %>
+  
+  <%= form.label :ステータス %>
+  <%= form.select :status, Task.statuses.keys.to_a,{prompt: "選択して下さい"} %>
+
+  <%= form.label :優先順位 %>
+  <%= form.select :priority, Task.priorities.keys, {prompt: "選択して下さい"} %>
+
+ 
+
+
+
   <%= form.submit %>
 <% end %>

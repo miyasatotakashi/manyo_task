@@ -1,11 +1,13 @@
 FactoryBot.define do
   factory :task do
-    title { 'test_title'}
-    content { 'test_content'}
+    title { 'first_title'}
+    content { 'first_content'}
+    deadline_on { '2022-11-02'}
   end
 
   factory :second_task, class: Task do
-    title { 'test_title2'}
-    content { 'test_content2'}
+    title { 'second_title'}
+    content { 'second_content'}
+    deadline_on { '2022-11-01'}
   end
 end
