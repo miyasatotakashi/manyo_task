@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
 
   def index
+    @tasks = current_user.tasks.all.includes(:user).order(created_at: "DESC")
     @tasks = Task.order(created_at: "DESC")
   if params[:sort_exprired] 
     @tasks = Task.all.order(deadline_on: "DESC") 
@@ -37,7 +38,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.build(task_params)
     if params[:back]
       render :new
     else
