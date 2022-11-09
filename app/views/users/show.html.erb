@@ -2,4 +2,10 @@
 
 <p>メールアドレス: <%= @user.email %></p>
 
+<p>管理者専用: <%= @user.admin %></p>
+
+<% if @user.admin? %>
+  <%= link_to  'タスクユーザー一覧', admin_users_path, class: "btn btn-info" %>
+<% end %>
+
 <%= link_to '一覧へ', tasks_path, class: "btn btn-info" %>

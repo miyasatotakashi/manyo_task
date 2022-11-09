@@ -1,5 +1,5 @@
 class Admin::UsersController < ApplicationController
-  before_action :check_admin, only: %i[:destroy, :edit]
+  before_action :check_admin
   before_action :set_user, only: %i[show edit destroy update]
   skip_before_action :login_required, only: %i[:new, :create]
 
@@ -27,23 +27,27 @@ class Admin::UsersController < ApplicationController
   def edit
   end
 
+  def update
+    if @user.update(user_params)
+      redirect_to admin_user_path, notice: "更新しました"
+    else
+      render :edit
+    end
+  end
+
   def destroy
     if @user.destroy
-      redairect_to(admin_users_path)
+      redirect_to(admin_users_path)
     else
-      redairect_to admin_users_path, notice: "管理者がいなくなるので削除できません"
+      redirect_to admin_users_path, notice: "管理者がいなくなるので削除できません"
     end
   end
 
   private
 
-  def check_admin
-    if logged_in?
-      redirect_to(root_path) unless current_user.admin?
-    else
-      redirect_to(new_session_path)
-    end
-  end
+  # def check_admin
+  #     redirect_to tasks_path, notice: "管理者ではないので、、、" unless current_user.admin?
+  # end
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)

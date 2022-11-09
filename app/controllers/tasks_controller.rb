@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  before_action :check_user, only: %i[ show edit update destroy]
 
   def index
     @tasks = current_user.tasks.all.includes(:user).order(created_at: "DESC")
@@ -84,4 +85,11 @@ class TasksController < ApplicationController
     params.require(:task).permit(:title, :content, :status, :priority, :deadline_on)
   end
 
+  def check_user
+    @task = Task.find(params[:id])
+    unless current_user.id == @task.user.id
+      redirect_to tasks_path, notice: 'アクセスできません'
+    end
+  end
+  
 end
