@@ -1,0 +1,28 @@
+<p><%=link_to '新規ユーザー登録', new_admin_user_path, class: "btn btn-primary" %></p>
+
+<%= paginate @users %>
+
+<h1>ユーザーリスト</h1>
+
+<table class="table table-striped">
+  <tr>
+    <th>ユーザーID</th>
+    <th>名前</th>
+    <th>管理者</th>
+    <th>カウント</th>
+  </tr>
+
+  <% @users.each do |user| %>
+    <%= user.id %>:<%= user.name %>
+
+    <tr class="date_row">
+      <td><%= user.id %></td>
+      <td><%= user.name %></td>
+      <td><%= user.admin %></td>
+      <td><%= user.tasks.count %></td>    
+      <td><%=link_to '詳細', admin_user_path(user), class: "btn btn-success" %></td>
+      <td><%=link_to '編集', edit_admin_user_path(user), class: "btn btn-success" %></td>
+      <td><%=link_to '削除', admin_user_path(user), method: :delete, class: "btn btn-danger" %></td>
+    </tr>
+  <% end %>
+</table>
