@@ -2,10 +2,31 @@
 
 <p>メールアドレス: <%= @user.email %></p>
 
-<p>管理者専用: <%= @user.admin %></p>
+<h2>タスク一覧</h2>
+<table class="table table-striped">
+  <tr>
+    <th>タスク名</th>
+    <th>タスク詳細</th>
+    <th>終了期限</th>
+    <th>ステータス</th>
+    <th>優先順位</th>
+  </tr>
 
-<% if @user.admin? %>
-  <%= link_to  'タスクユーザー一覧', admin_users_path, class: "btn btn-info" %>
-<% end %>
+  <% @user.tasks.each do |task| %>
+    <tr>
+      <td><%= task.title %></td>
+      <td><%= task.content %></td>
+      <td><%= task.deadline_on %></td>
+      <td><%= task.status %></td>
+      <td><%= task.priority %></td>
+      <td><%=link_to '詳細', task_path(task.id), class: "btn btn-success" %></td>      
+      <td><%=link_to '編集', edit_task_path(task.id), class: "btn btn-success" %></td>
+      <td><%=link_to '削除', task_path(task.id), method: :delete, class: "btn btn-danger" %></td>
+    </tr>
+  <% end %>
+</table>
 
-<%= link_to '一覧へ', tasks_path, class: "btn btn-info" %>
+<p><%= link_to "タスク新規登録", new_task_path %></p>
+<p><%= link_to "タスク一覧", tasks_path %></p>
+<p><%= link_to "管理者ページ", admin_users_path %></p>
+    

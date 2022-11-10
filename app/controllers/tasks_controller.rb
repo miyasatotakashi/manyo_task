@@ -2,23 +2,22 @@ class TasksController < ApplicationController
   before_action :check_user, only: %i[ show edit update destroy]
 
   def index
-    @tasks = current_user.tasks.all.includes(:user).order(created_at: "DESC")
-    @tasks = Task.order(created_at: "DESC")
+    @tasks = current_user.tasks.order(created_at: "DESC")
   if params[:sort_exprired] 
-    @tasks = Task.all.order(deadline_on: "DESC") 
+    @tasks = current_user.tasks.order(deadline_on: "DESC") 
   elsif params[:sort_priority]
-    @tasks = Task.all.order(priority: "ASC") 
+    @tasks = current_user.tasks.order(priority: "ASC") 
   end
     if params[:task].present?
       title_input = params[:task][:title]
       status_input = params[:task][:status]
 
       if title_input.present? && status_input.present?
-        @tasks = Task.title_search(title_input).status_search(status_input)
+        @tasks = current_user.tasks.title_search(title_input).status_search(status_input)
       elsif title_input.present?
-        @tasks = Task.title_search(title_input)
+        @tasks = current_user.tasks.title_search(title_input)
       elsif status_input.present?
-        @tasks = Task.status_search(status_input)
+        @tasks = current_user.tasks.status_search(status_input)
       # if params[:task][:title].present? && params[:task][:status].present?
       #   @tasks = Task.where("title LIKE ?", "%#{params[:task][:title]}%").where(status: status)
       # elsif params[:task][:title].present?
