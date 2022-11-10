@@ -1,5 +1,5 @@
 class Admin::UsersController < ApplicationController
-  # before_action :check_admin
+  before_action :check_admin
   before_action :set_user, only: %i[show edit destroy update]
   skip_before_action :login_required, only: %i[:new, :create]
 
