@@ -4,8 +4,7 @@ class Admin::UsersController < ApplicationController
   skip_before_action :login_required, only: %i[:new, :create]
 
   def index
-    @users = User.all.order(id: :asc)
-    @users = @users.page(params[:page]).per(5)
+    @users = User.select(:id, :name, :email, :admin).order("created_at").page(params[:page]).per(5)
   end
 
   def new

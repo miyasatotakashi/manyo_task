@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   before_action :check_user, only: %i[ show edit update destroy]
 
   def index
-    @tasks = current_user.tasks.order(created_at: "DESC")
+    @tasks = current_user.tasks.all.includes(:user).order(created_at: "DESC")
   if params[:sort_exprired] 
     @tasks = current_user.tasks.order(deadline_on: "DESC") 
   elsif params[:sort_priority]
