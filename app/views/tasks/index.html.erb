@@ -8,9 +8,12 @@
 
 <p><%= notice %></p>
 
+
+
 <table class="table table-striped">
   <tr>
-    <th>名前</th>
+    <th>ユーザー名</th>
+    <th>タイトル</th>
     <th>タスク内容</th>
     <th><%=link_to "終了期限でソートする", tasks_path(sort_exprired: "true") %></th>
     <th>ステータス</th>
@@ -19,6 +22,7 @@
 
 <% @tasks.each do |task| %>
   <tr class="date_row">
+    <td><%= task.user.name %></td>
     <td><%= task.title %></td>
     <td><%= task.content %></td>
     <td><%= task.deadline_on %></td>
