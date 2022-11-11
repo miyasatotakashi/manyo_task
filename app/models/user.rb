@@ -20,7 +20,7 @@ class User < ApplicationRecord
     @admin_users = User.where(admin: true)
     if(@admin_users.count == 1 && @admin_users.first == self) && self.admin == false
       errors.add :base, "管理者がいなくなります"
-      throw.abort
+      throw :abort
     end
   end
 end
