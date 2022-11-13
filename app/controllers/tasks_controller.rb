@@ -11,6 +11,7 @@ class TasksController < ApplicationController
     if params[:task].present?
       title_input = params[:task][:title]
       status_input = params[:task][:status]
+      label_input = params[:task][:label_id]
 
       if title_input.present? && status_input.present?
         @tasks = current_user.tasks.title_search(title_input).status_search(status_input)
@@ -18,6 +19,8 @@ class TasksController < ApplicationController
         @tasks = current_user.tasks.title_search(title_input)
       elsif status_input.present?
         @tasks = current_user.tasks.status_search(status_input)
+      elsif label_input.present?
+        @tasks = current_user.tasks.label_search(label_input)
       # if params[:task][:title].present? && params[:task][:status].present?
       #   @tasks = Task.where("title LIKE ?", "%#{params[:task][:title]}%").where(status: status)
       # elsif params[:task][:title].present?
@@ -81,7 +84,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:title, :content, :status, :priority, :deadline_on)
+    params.require(:task).permit(:title, :content, :status, :priority, :deadline_on, label_ids:[])
   end
 
   def check_user
