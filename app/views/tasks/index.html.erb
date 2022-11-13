@@ -4,7 +4,7 @@
   <%= form.select :status, [["未着手","0"], ["着手中","1"], ["完了", "2"]], include_blank: "ステータス検索" %>
   <%= form.text_field :title, placeholder: "タイトル検索" %>
   <%= form.label :'ラベル' %>
-  <%= select("label_id", Label.pluck(:name, :id), {include_blank: true}) %>
+  <%= form.select("label_id", Label.pluck(:name, :id), {include_blank: true}) %>
   <%= form.submit '検索する' %>
 <% end %>
 
