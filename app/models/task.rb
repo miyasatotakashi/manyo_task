@@ -7,7 +7,7 @@ class Task < ApplicationRecord
 
   scope :title_search, -> (text_title) {where("title LIKE ?", "%#{text_title}%")}
   scope :status_search, -> (select_status) {where(status: select_status)}
-  scope :label_search, -> (select_label) {where(id: TaskLabel.where(label_id: label).select(:task_id))}
+  scope :label_search, -> (select_label) {where(id: TaskLabel.where(label_id: select_label).select(:task_id))}
 
   belongs_to :user
   

@@ -12,6 +12,7 @@
     <th>終了期限</th>
     <th>ステータス</th>
     <th>優先順位</th>
+    <th>ラベル</th>
   </tr>
 
   <% @user.tasks.each do |task| %>
@@ -21,6 +22,10 @@
       <td><%= task.deadline_on %></td>
       <td><%= task.status %></td>
       <td><%= task.priority %></td>
+      <td><% task.labels.each do |label| %>
+        <%= label.name %>
+        <% end %>
+        </td>
       <td><%=link_to '詳細', task_path(task.id), class: "btn btn-success" %></td>      
       <td><%=link_to '編集', edit_task_path(task.id), class: "btn btn-success" %></td>
       <td><%=link_to '削除', task_path(task.id), method: :delete, class: "btn btn-danger" %></td>
