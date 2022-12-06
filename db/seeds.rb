@@ -1,6 +1,6 @@
 User.create!(
   name: "user1",
-  email: "user0@example.com", 
+  email: "user1@example.com", 
   password: "testpassword",
   password_confirmation: "testpassword",
   admin: true )
@@ -21,7 +21,7 @@ end
     deadline_on: DateTime.now,
     status: rand(0..2),
     priority: rand(0..2),
-    user_id: rand(1..10)
+    user_id: User.first.id
   )
   Label.create!(name: "ラベル#{n + 1}")
 end

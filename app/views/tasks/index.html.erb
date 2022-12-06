@@ -5,7 +5,7 @@
   <%= form.text_field :title, placeholder: "タイトル検索" %>
   <%= form.label :'ラベル' %>
   <%= form.select("label_id", Label.pluck(:name, :id), {include_blank: true}) %>
-  <%= form.submit '検索する' %>
+  <%= form.submit '検索する', name: 'search' %>
 <% end %>
 
 <p><%= notice %></p>

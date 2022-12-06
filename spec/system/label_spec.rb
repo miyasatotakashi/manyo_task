@@ -35,7 +35,6 @@ RSpec.describe 'ラベル管理機能', type: :system do
       check 'label2'
       click_button '登録する'
       expect(page).to have_content 'ラベル'
-      
     end
   end
 end
